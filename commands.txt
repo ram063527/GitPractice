@@ -1,0 +1,590 @@
+-------------------IMPORTANT---------------------
+
+man <command>
+-> If you want to know information about a particular command.
+e.g. man ls, man echo
+-> To know all the arguments and everything about a command.
+----------------------------------------------------
+
+ls 
+-> lists all the files in that directory
+
+ls -a 
+-> list all the files in that directory including hidden files
+
+ls -l
+-> list all the files in that directory with more information.
+
+# combining the parameters 
+
+ls -al
+-> list all the files with hidden files and also their details (more information).
+
+ls -R
+-> list all the sub directories in the current directory.
+
+lsof
+-> List all the open files 
+
+
+
+cd <directory> 
+-> Go inside that directory
+
+cd ../ 
+-> go one directory back
+
+# directly go inside other directory 
+
+cd ../<directoryName>
+-> basically says in the previous directory there is a directory names <directoryName>
+go inside that.
+Is equivalent to 
+cd ../
+cd directoryName
+
+# directly navigate to a path 
+cd ~/<Path>
+-> Goes to the specified path.
+
+
+
+pwd (print working directory)
+-> Gives the path of the current directory
+
+
+cat (conncatinate)
+-> Opens a file
+
+cat > hello (creates a general file if you dont specify type)
+-> Creates a file hello if not already present 
+-> If the file exists and has stuff in it -> it will overwrite.
+-> If the file exists and is empty -> it will write to it.
+-> basically it overwrites.
+
+> ( the funnel)
+-> It outputs whatever is on the left to whatever is on the right.
+
+e.g.
+-> Lets say there is paritosh.txt and sanket.txt
+
+cat paritosh.txt sanket.txt > hello.txt
+
+-> This will get the contents from paritosh.txt and sanket.txt 
+-> and overrides it in hello.txt if it is present.
+-> if hello.txt is not present it will create a new file and copy the contents
+-> from both these files to the newly created file.
+
+
+echo <Something>
+-> Prints Something in the console.
+
+# echo + the funnel (>) also called redirector
+
+echo "paritosh pal" > notes.txt
+-> This will instead of echoing in the console right the text on to 
+-> notes.txt if it is already present
+-> create and write if not already present 
+
+-------------------------------------------------------------
+
+# the pipe (|) also called as the tunnel  
+-> Use the thing on the left to do something on the right
+-> Output of the first command is going to be used as an input to the second command. 
+
+e.g. 
+cat file.txt | tr a-z A-Z > upper.txt
+
+-> All the contents in the file.txt will now be provided to the tr(translate)
+
+
+# tr (translate)
+-> for more details man tr
+-> tr <originalString> <whatYouWantToDoWithIt>
+e.g. tr a-z A-Z ( all the lowercase characters translated to upperCase)
+
+-------------- FILE FOLDER MANUPULATION --------------
+
+
+mkdir <name> 
+-> create a new directory inside the current directory with the specified name.
+
+mkdir <path>/<name>
+-> creates a new directory named <name> in the specified path.
+
+mkdir -p <directory>name<directory>
+-> If you want to create a directory in the middle of two directories
+
+
+-------------------- FILE MANUPULATION ----------------
+
+touch <file>
+-> creates a new file in the current directory.
+
+touch <path/directory>/<file>
+-> creates a new file inside the specified path/directory
+
+
+------------- Copy --------
+
+cp <souceFile> <newFile>
+-> creates a copy of the source file named <newFile>
+
+
+------------- copy directory --------------
+
+cp -R <sourceDir> <destinationDir>
+-> Note that the all the contents / sub directories will be also be copied
+
+
+---------------- Move ---------------
+mv <sourceFile> <destinatio path/directory>
+e.g. mv files.txt folder
+
+----------------Rename file Using move ------------
+
+mv <originalName> <newName>
+
+
+-------------- move and Rename -----------------
+
+mv <file> <path/directory>/newName
+
+
+------------------Rename directory ----------
+
+
+--------------- Remove a file -------------
+
+rm <fileName>
+-> Doesnt go into the bin - delets permanently.
+
+
+------------ sudo ----------------
+sudo -> Super User do 
+-> to know more man sudo
+e.g. sudo echo hello world 
+-> will ask for your password.
+
+------------- df ---------------------
+df 
+-> disk space usage.
+
+-------- df -m ------------
+df -m 
+-> in mb 
+
+---------------du --------
+-> display disk usage statistics 
+du -h 
+-> Disk used statistics of the current directory and files within
+
+
+-------------- head-----------------
+
+-> Display first few lines of any file.
+-> by default it shows first 10 lines 
+
+head <fileName>
+
+
+head -n 4 <fileName>
+-> Displays the first 4 lines.
+
+
+----------- tail ------- 
+-> Display last few lines 
+-> default is 10
+
+tail <fileName>
+
+tail -n 4 <fileName>
+-> Displays the last 4 lines 
+
+
+-------------------- diff ----------------------
+diff <file1> <file2>
+-> Compares the contents of files line by line
+-> Outputs the ones which doesnt match
+
+
+-------------- locate ----------------
+
+-> Locates all the files
+
+locate <file>
+locate <wildcard>
+
+-------------------- find ---------------
+
+find .
+-> Finds everything in the current directory 
+
+find .. 
+-> Finds everything in the previous directory
+
+find <directoryName>
+-> finds everything in the specified directory 
+
+
+------------ find directory not files ----------
+
+find . -type d 
+-> Find everything in the current directory which is of type directory
+
+--------------- find files not the directory -------------
+
+find . -type f 
+-> Finds everything in the current directory which is of type file.
+
+
+-------------- find particular file -------------
+
+find . -type f -name "<name>"
+-> Find in the current directory which is of type file and with the name <specifiedName>
+
+
+find . -type f -iname "<name>"
+-> case insensitive name. 
+
+
+------------------ find wildcard ---------------
+
+find . -type f -name "*.txt"
+-> Finds all the test files.
+
+----------- find on basis of date ----------
+
+find . -type f -mmin -20
+-> Finds all the files that were modified 20 mins ago 
+
+
+find .  -type f -mmin +15
+-> ALl the files that were modified more that 15 mins ago 
+
+
+find . -type f -mmin +2 -mmin -10
+-> All the files that were modified more than 2 mins ago and less than 10 mins ago
+
+
+find . -type f -mtime -10
+-> All the files that were modified less than 10 days ago
+
+
+-> FOR more details   ----- man find -------
+
+
+
+----------- find only in the current directory --------
+
+find . -type f -maxdepth = 1
+
+----------- find by size --------------
+
+find . -size +1K
+
+----------- find empty -----------------
+
+find . -empty 
+
+
+------------ find based on permissions --------
+
+find . -perm 777
+
+----------- Change file permissions ------------------
+
+chmod u=rwx, g=rw, o=r <fileName>
+
+------------ 
+chmod 777 upper.txt
+
+777 -> user ground other  -> Each 7 is made of read write execute
+
+4 - read
+2- write
+1- execute 
+
+
+---------------------- chown ----------
+
+-> Change owner 
+chown root <fileName>
+
+-> give this file root owner
+
+
+----------- Working with multiple files -------
+
+find . -type f - name "*.txt" -exec rm -rf {} + 
+
+-> So basically lets say you find some particular files 
+-> and you want to manipulate them not individually but togehter.
+-> We can use the -exec argument.
+-> whatever action you want to perform write it on the right side
+e.g. above
+-> basically says find all files in currnt directory wiht name .txt
+-> and on each file perform rm -rf.
+-> {} is a placeholder 
+-> + indicated all the files.
+
+
+
+
+----------- grep ------------
+grep (global regular expression print )
+-> Allows us to search text within our files 
+-> Case sensitive 
+
+grep -V
+-> version 
+
+grep "thingToSearch" <fileInWhichToSearch>
+
+
+
+e.g. grep "Kunal" names.txt
+
+
+
+---------- complete word ------------
+
+e.g. grep -w "Kunal" names.txt
+-> get ths full word
+
+
+----------- case insensitive ------
+grep -i "kunal" names.txt
+
+
+------------combining-------------
+
+grep -iw "kunal" names.txt
+
+
+------- To get the line number ---------
+
+grep -n "kunal" names.txt 
+
+
+------- combining ----------
+
+grep -win "rahul" names.txt
+
+------- To see previous entries ---------
+
+grep -B 3 "Rahul" names.txt
+-> Get the Rahul and also the previous 3 lines.
+
+------ What if i dont know ?  In which file it is -----------------
+
+grep -win "Rahul" ./ .txt
+-> This basically says search for in all the text files in current directory
+
+
+------------ Searching recursively -------------
+
+grep -rwin  "Rahul" .
+
+-> the -r will search recursively in the current directory 
+
+
+---------- Check which files contains the search parameter -------
+
+grep -wirl "kunal" .
+
+-> Says tell me which file contain kunal in the current directory.
+-> -l is used to search which file.
+
+
+
+------------------ Counting how many time the seach param appears ------
+
+grep -wirc "kunal" .
+-> Says in the current directory how many times kunal appears and in which files
+-> -c is the param here
+
+
+-------- PIPING -------------
+
+piping into grep
+
+history | grep "ls -l"
+
+
+
+------- using regex to search -------------
+
+grep -P "<regex>" names.txt
+
+grep -P "\w" companies.txt
+
+
+
+----------------- sort ---------------
+
+sort <fileToSort>
+
+--------- sort reverse ---------------
+
+sort -r <fileToSort>
+
+------------- sort case insensitive -------
+
+sort -f <fileToSort>
+
+
+-------------- ping-----------------
+
+ping google.com
+-> To get all the packet information
+
+
+-------------- wget -------------------
+
+wget <url>
+-> download any file from the internet
+-> more infor -> man wget
+
+
+--------- top --------------------
+-> Gets all the running processes 
+
+----------- kill ------------------
+
+kill <processId>
+-> Kills / removes the particular process 
+
+-------------------- uname ---------------
+-> Gives the name of the kernel
+
+
+
+----------------- zip ---------------
+
+zip name.zip <filesToBeZipped>
+
+---------- unzip -----------------
+
+unzip zippedFile.zip
+
+
+
+------------ hostname ------
+hostname
+-> Obtain the DNS 
+
+
+hostname -i
+-> IP address 
+
+-> more info man hostname
+
+
+---------- add new user ---------
+
+useradd User 
+
+------------ set password ----------
+passwd User
+
+---------------- delete user --------------
+userdel <name>
+
+
+
+--------------- uname---------
+-> Gives the kernel
+
+uname -o
+-> Type of kernel 
+
+uname -m
+-> Architecture 
+
+uname -r 
+-> kernel version
+
+---------- information about OS ------
+
+cat /etc/os-release 
+
+------------- CPU Details------- 
+lscpu
+
+
+--------------- Check memory that is free -------
+
+free 
+
+free -h
+-> Human readable 
+
+------------ Check Virtual memory ----------
+vmstat
+
+--------- id ----------------
+-> The id 
+
+
+----------- getent group------------
+
+getent group <User>
+-> To check whether the <User> exists 
+
+------------- To check id of User --------
+id <User>
+
+
+------------------------ Networking commands ------
+
+nslookup <Ip/url>
+
+
+netstat 
+-> for all the open ports
+
+
+sed
+-> Stream editor 
+
+cut 
+-> cut out selected portions of each line
+
+
+ps aux
+
+-------------- WORKING WITH OPERATOR --------------
+
+ping google.com & ping comclassroom.org
+
+
+&& 
+-> Executes the second command only when the first command has been 
+-> executed
+
+e.g.
+echo "First" && echo "second"
+
+
+|| 
+-> Executes the second command only when first command fails
+-> If the first command succsedds does not execute the first command 
+
+
+! 
+-> Negation 
+e.g. 
+rm -r !(fileName)
+-> Remove everything except the specified
+
+-------------- Multiple commands -------
+with ; 
+
+
+
+
+-----             Apppend --------------
+
+>> 
+echo "hey" >> fileHello
